@@ -33,4 +33,4 @@ def Kmeans(img, clusterN):
 
 
 
-    return res2, res_s2
+    return ret, res2, res_s2
