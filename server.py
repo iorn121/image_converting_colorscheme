@@ -5,7 +5,6 @@ import image_converting as imcon
 from datetime import datetime
 import os
 import string
-import random
 
 SAVE_DIR = "./images"
 if not os.path.isdir(SAVE_DIR):
@@ -43,4 +42,5 @@ def upload():
         return redirect('/')
 
 if __name__=="__main__":
-    app.run(debug=True,host="0.0.0.0",port=8888,threaded=True)
+    app.run(debug=True,host="0.0.0.0",port=5000,threaded=True)
+#http://127.0.0.1:5000/
