@@ -6,16 +6,20 @@ from datetime import datetime
 import os
 import string
 
+#加工画像の保存先フォルダを確認・作成
 SAVE_DIR = "./images"
 if not os.path.isdir(SAVE_DIR):
     os.mkdir(SAVE_DIR)
 
+#アプリの作成
 app = Flask(__name__, static_url_path="")
 
+#htmlのレンダリング
 @app.route('/')
 def index():
     return render_template('index.html', images=os.listdir(SAVE_DIR)[::-1])
 
+#ディレクトリからのダウンロード
 @app.route('/images/<path:filename>')
 def send_js(filename):
     return send_from_directory(SAVE_DIR, filename)
@@ -23,7 +27,10 @@ def send_js(filename):
 @app.route('/upload', methods=['POST'])
 def upload():
     if request.files['image']:
+
+        #クラスター数の入力情報取得
         k=request.form.get('clusterN')
+
         # 画像として読み込み
         stream = request.files['image'].stream
         img_array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
